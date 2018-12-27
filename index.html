@@ -1,0 +1,54 @@
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello world</title>
+
+  <script src="qwebchannel.js"></script>
+  <script src="bridge.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    function hello(){
+      bridge.hello()
+    }
+
+    function quitRequest(){
+      bridge.quitRequest()
+    }
+
+    function loginSuccess(){
+      bridge.loginSuccess({
+        token: "abc",
+        name: "zhangsan"
+      })
+    }
+
+    function openLessonPackageRequest(lnum, cnum){
+      bridge.openLessonPackageRequest(lnum, cnum)
+    } 
+    
+    $(document).ready(function () {
+      bridge.ok.connect(function(){
+        alert("ok from C++")
+      })
+    })
+
+  </script>
+</head>
+
+Nice job!.
+<div onclick="hello()">Button
+</div>
+
+<div onclick="quitRequest()">关闭
+</div>
+
+<div onclick="loginSuccess()">Login
+</div>
+<div style="color:#aaa">这是一个登录测试页面！请通过配置settings.ini文件重定向到您的真实登录页面。</div>
+<br/>
+<span type="button" onclick="loginSuccess()" style="background:#888;margin: auto auto;padding:10px">登录按钮
+</span>
+
+<div onclick="openLessonPackageRequest('a', 'b')">Login
+</div>
+<html>
